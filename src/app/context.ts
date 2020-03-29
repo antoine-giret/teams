@@ -1,9 +1,10 @@
 import React from 'react'
+import { Theme } from 'react-native-paper'
 
-import theme, { TTheme } from './theme'
+import theme from './theme'
 
 export interface IAppContext {
-  theme: TTheme
+  theme: Theme
 }
 
 export const INITIAL_CONTEXT: IAppContext = {

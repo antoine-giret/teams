@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { AppLoading } from 'expo'
+import { Provider as PaperProvider } from 'react-native-paper'
 
 import AppContext, { IAppContext, INITIAL_CONTEXT } from './context'
 import AppNavigator from './navigator'
@@ -17,9 +18,13 @@ function App() {
     return <AppLoading onError={console.warn} onFinish={() => setReady(true)} startAsync={init} />
   }
 
+  const { theme } = context
+
   return (
     <AppContext.Provider value={{ ...context }}>
-      <AppNavigator />
+      <PaperProvider theme={theme}>
+        <AppNavigator />
+      </PaperProvider>
     </AppContext.Provider>
   )
 }

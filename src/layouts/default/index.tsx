@@ -1,5 +1,5 @@
 import React from 'react'
-import { SafeAreaView, StyleSheet } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 
 import Header from './header'
 import Content from './content'
@@ -10,10 +10,10 @@ interface IProps {
 
 function Layout({ children }: IProps) {
   return (
-    <SafeAreaView style={styles.wrapper}>
+    <View style={styles.wrapper}>
       <Header />
       <Content>{children}</Content>
-    </SafeAreaView>
+    </View>
   )
 }
 

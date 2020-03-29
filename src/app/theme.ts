@@ -1,12 +1,12 @@
+import { DefaultTheme } from 'react-native-paper'
+
 const theme = {
-  palette: {
-    primary: {
-      main: '#3f51b5',
-      contrastColor: '#fff',
-    },
+  ...DefaultTheme,
+  roundness: 2,
+  colors: {
+    ...DefaultTheme.colors,
+    primary: '#3f51b5',
   },
 }
-
-export type TTheme = typeof theme
 
 export default theme
