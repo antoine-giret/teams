@@ -5,7 +5,7 @@ interface IProps {
   children?: React.ReactNode
 }
 
-function Content({ children }: IProps) {
+function TabLayout({ children }: IProps) {
   return <View style={styles.wrapper}>{children}</View>
 }
 
@@ -15,4 +15,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default Content
+export default TabLayout
