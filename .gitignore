@@ -1,6 +1,7 @@
 .env
 node_modules/**/*
 .expo/*
+.firebase/*
 npm-debug.*
 *.jks
 *.p8

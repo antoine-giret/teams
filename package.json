@@ -6,7 +6,7 @@
     "start:ios": "expo start --ios",
     "start:web": "expo start --web",
     "build:web": "expo build:web",
-    "lint": "tsc --noEmit && eslint --ext .js,.jsx,.ts,.tsx ./",
+    "lint": "tsc --noEmit && eslint --ext .js,.jsx,.ts,.tsx ./src ./functions/src",
     "eject": "expo eject"
   },
   "dependencies": {
