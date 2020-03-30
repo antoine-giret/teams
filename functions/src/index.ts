@@ -8,5 +8,5 @@ export const createUser = auth.user().onCreate(async ({ uid, email, displayName 
   await firestore()
     .collection('users')
     .doc(uid)
-    .set({ email, displayName: displayName || '' })
+    .set({ email, displayName: displayName || '', teams: [] })
 })

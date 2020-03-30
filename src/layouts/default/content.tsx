@@ -1,12 +1,12 @@
 import React from 'react'
-import { StyleSheet, View } from 'react-native'
+import { SafeAreaView, StyleSheet } from 'react-native'
 
 interface IProps {
   children?: React.ReactNode
 }
 
 function Content({ children }: IProps) {
-  return <View style={styles.wrapper}>{children}</View>
+  return <SafeAreaView style={styles.wrapper}>{children}</SafeAreaView>
 }
 
 const styles = StyleSheet.create({

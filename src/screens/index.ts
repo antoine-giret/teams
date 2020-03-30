@@ -1,5 +1,4 @@
-/* eslint-disable import/prefer-default-export */
-
+import LoginScreen from './login'
 import HomeScreen from './home'
 
-export { HomeScreen }
+export { HomeScreen, LoginScreen }

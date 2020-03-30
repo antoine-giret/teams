@@ -8,7 +8,7 @@ import {
   FIREBASE_PROJECT_ID,
   FIREBASE_STORAGE_BUCKET,
 } from 'react-native-dotenv'
-import { app as firebaseApp, auth, initializeApp } from 'firebase/app'
+import { app as firebaseApp, auth, firestore, initializeApp } from 'firebase/app'
 import 'firebase/auth'
 import 'firebase/firestore'
 import 'firebase/storage'
@@ -18,8 +18,11 @@ class FirebaseService {
 
   auth: auth.Auth
 
+  db: firestore.Firestore
+
   constructor(private readonly app: firebaseApp.App) {
     this.auth = app.auth()
+    this.db = app.firestore()
 
     console.log('[FirebaseService] initialized')
   }
