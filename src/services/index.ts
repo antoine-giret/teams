@@ -1,5 +1,6 @@
 import FirebaseService from './firebase'
 import UserService from './user'
 import AuthService from './auth'
+import TeamService from './team'
 
-export { AuthService, FirebaseService, UserService }
+export { AuthService, FirebaseService, TeamService, UserService }

@@ -1,4 +1,5 @@
+import { IFirebaseTeam, IFirebaseUser } from './firebase'
 import User from './user'
-import { IFirebaseUser } from './firebase'
+import Team from './team'
 
-export { IFirebaseUser, User }
+export { IFirebaseTeam, IFirebaseUser, Team, User }

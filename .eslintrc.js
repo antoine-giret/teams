@@ -20,7 +20,7 @@ module.exports = {
       },
     ],
     indent: ['error', 2],
-    quotes: ['error', 'single'],
+    quotes: ['error', 'single', { avoidEscape: true }],
     semi: ['error', 'never'],
     'import/order': ['error', { 'newlines-between': 'always' }],
     'no-use-before-define': 'off',

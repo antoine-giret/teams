@@ -2,23 +2,23 @@ import React from 'react'
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs'
 import { MaterialCommunityIcons, MaterialIcons } from 'react-native-vector-icons'
 
-import { DashboardScreen, GamesScreen, RankingScreen, SettingsScreen } from './screens'
+import { GamesScreen, HomeScreen, RankingScreen, SettingsScreen } from './screens'
 
 const Tab = createMaterialBottomTabNavigator()
 
-export enum HomeScreens {
-  DASHBOARD = 'Dashboard',
+export enum TeamScreens {
+  HOME = 'Home',
   GAMES = 'Games',
   RANKING = 'Ranking',
   SETTINGS = 'Settings',
 }
 
-function HomeNavigator() {
+function TeamNavigator() {
   return (
     <Tab.Navigator barStyle={{ backgroundColor: '#212121' }} labeled={false}>
       <Tab.Screen
-        component={DashboardScreen}
-        name={HomeScreens.DASHBOARD}
+        component={HomeScreen}
+        name={TeamScreens.HOME}
         options={{
           tabBarIcon: ({
             // eslint-disable-next-line react/prop-types
@@ -28,7 +28,7 @@ function HomeNavigator() {
       />
       <Tab.Screen
         component={GamesScreen}
-        name={HomeScreens.GAMES}
+        name={TeamScreens.GAMES}
         options={{
           tabBarIcon: ({
             // eslint-disable-next-line react/prop-types
@@ -38,7 +38,7 @@ function HomeNavigator() {
       />
       <Tab.Screen
         component={RankingScreen}
-        name={HomeScreens.RANKING}
+        name={TeamScreens.RANKING}
         options={{
           tabBarIcon: ({
             // eslint-disable-next-line react/prop-types
@@ -48,7 +48,7 @@ function HomeNavigator() {
       />
       <Tab.Screen
         component={SettingsScreen}
-        name={HomeScreens.SETTINGS}
+        name={TeamScreens.SETTINGS}
         options={{
           tabBarIcon: ({
             // eslint-disable-next-line react/prop-types
@@ -60,4 +60,4 @@ function HomeNavigator() {
   )
 }
 
-export default HomeNavigator
+export default TeamNavigator

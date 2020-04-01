@@ -1,4 +1,4 @@
 import LoginScreen from './login'
-import HomeScreen from './home'
+import TeamScreen from './team'
 
-export { HomeScreen, LoginScreen }
+export { LoginScreen, TeamScreen }

@@ -2,14 +2,14 @@ import React from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 
-import { HomeScreen, LoginScreen } from '../screens'
+import { LoginScreen, TeamScreen } from '../screens'
 import { User } from '../models'
 
 const Stack = createStackNavigator()
 
 export enum Screens {
   LOGIN = 'Login',
-  HOME = 'Home',
+  TEAM = 'Team',
 }
 
 interface IProps {
@@ -21,7 +21,7 @@ function AppNavigator({ currentUser }: IProps) {
     <NavigationContainer>
       {currentUser ? (
         <Stack.Navigator headerMode="none">
-          <Stack.Screen component={HomeScreen} name={Screens.HOME} />
+          <Stack.Screen component={TeamScreen} name={Screens.TEAM} />
         </Stack.Navigator>
       ) : (
         <Stack.Navigator headerMode="none">

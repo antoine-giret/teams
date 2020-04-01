@@ -2,8 +2,8 @@ import React from 'react'
 
 import TabLayout from '../../../../layouts/tab'
 
-function DashboardScreen() {
+function HomeScreen() {
   return <TabLayout />
 }
 
-export default DashboardScreen
+export default HomeScreen

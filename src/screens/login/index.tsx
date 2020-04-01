@@ -6,7 +6,7 @@ import { Button, Divider } from 'react-native-paper'
 import AppContext from '../../app/context'
 import { AuthService } from '../../services'
 import Layout from '../../layouts/default'
-import teamImage from '../../../assets/image/team.svg'
+import joinTeamImage from '../../../assets/image/join-team.svg'
 
 function LoginScreen() {
   const {
@@ -21,7 +21,7 @@ function LoginScreen() {
   return (
     <Layout>
       <View style={styles.wrapper}>
-        <Image resizeMode="contain" source={{ uri: teamImage }} style={styles.image} />
+        <Image resizeMode="contain" source={{ uri: joinTeamImage }} style={styles.image} />
         <Text style={[styles.title, { color: colors.primary }]}>
           <Trans components={[<br key={0} />, <b key={1} />]} i18nKey="login.title" />
         </Text>

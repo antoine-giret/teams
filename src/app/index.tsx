@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { AppLoading } from 'expo'
 import { Provider as PaperProvider } from 'react-native-paper'
 
-import { User } from '../models'
+import { Team, User } from '../models'
 import { FirebaseService, UserService } from '../services'
 
 import AppContext, { IAppContext, INITIAL_CONTEXT } from './context'
@@ -25,11 +25,15 @@ function App() {
 
     const [currentUser] = await Promise.all([UserService.getInstance().getCurrentUser()])
 
-    setContext({ ...context, currentUser })
+    setContext({ ...context, currentUser, currentTeam: currentUser ? currentUser.defaultTeam : null })
   }
 
   function updateCurrentUser(currentUser: User | null | undefined) {
     setContext({ ...context, currentUser })
+  }
+
+  function updateCurrentTeam(currentTeam: Team | null) {
+    setContext({ ...context, currentTeam })
   }
 
   if (!isReady) {
@@ -39,7 +43,7 @@ function App() {
   const { theme, currentUser } = context
 
   return (
-    <AppContext.Provider value={{ ...context, updateCurrentUser }}>
+    <AppContext.Provider value={{ ...context, updateCurrentUser, updateCurrentTeam }}>
       <PaperProvider theme={theme}>
         <AppNavigator currentUser={currentUser} />
       </PaperProvider>

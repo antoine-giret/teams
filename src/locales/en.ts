@@ -9,6 +9,19 @@ const en = {
       },
       title: 'Join<0/>your <1>team</1>',
     },
+    team: {
+      empty_state: {
+        actions: {
+          create: 'Create my team',
+          join: 'Join',
+        },
+        join: 'Or join a team',
+        text: "You don't have a team yet",
+      },
+      join_form: {
+        code: 'Team code',
+      },
+    },
   },
 }
 
