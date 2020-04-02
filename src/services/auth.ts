@@ -33,7 +33,7 @@ class AuthService {
         await auth.signInWithCredential(firebaseAuth.GoogleAuthProvider.credential(idToken, accessToken))
       }
 
-      return await UserService.getInstance().getCurrentUser()
+      return await UserService.getInstance().reconnect()
     } catch (err) {
       console.error(`[AuthService][signInWithGoogle] failed: ${err}`)
 
@@ -46,7 +46,7 @@ class AuthService {
 
     try {
       await auth.signOut()
-      await UserService.getInstance().getCurrentUser()
+      await UserService.getInstance().reconnect()
     } catch (err) {
       throw new Error(`[AuthService][signOut] failed: ${err}`)
     }

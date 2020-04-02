@@ -1,21 +1,8 @@
 import { firestore } from 'firebase'
 
-import { IFirebaseTeam, IFirebaseUser, User } from '../models'
+import { IFirebaseTeam, IFirebaseUser, IFirebaseUserTeam, toUser, User } from '../models'
 
 import FirebaseService from './firebase'
-import { toTeam } from './team'
-
-async function toUser(uuid: string, { email, displayName, teams: firebaseTeams }: IFirebaseUser) {
-  const teams = await Promise.all(
-    (firebaseTeams || []).map(async ({ ref, isDefault }) => {
-      const team = <firestore.DocumentSnapshot<IFirebaseTeam>>await ref.get()
-
-      return toTeam(ref.id, team.data(), isDefault)
-    }),
-  )
-
-  return new User(uuid, email, displayName, teams)
-}
 
 class UserService {
   private static instance: UserService
@@ -38,7 +25,11 @@ class UserService {
     return UserService.instance
   }
 
-  async getCurrentUser(): Promise<User | null> {
+  getCurrent() {
+    return this.currentUser
+  }
+
+  async reconnect(): Promise<User | null> {
     const {
       auth: { currentUser },
     } = FirebaseService.getInstance()
@@ -58,6 +49,33 @@ class UserService {
     }
 
     return this.currentUser
+  }
+
+  async addTeam(teamRef: firestore.DocumentReference<IFirebaseTeam>): Promise<boolean> {
+    try {
+      if (!this.currentUser) throw new Error('no current user')
+      const ref = await this.usersRef.doc(this.currentUser.uuid)
+      let doc = await ref.get()
+      if (!doc.exists) throw new Error('user document missing')
+
+      const prevData = doc.data()
+
+      ref.update({
+        teams: (firestore.FieldValue.arrayUnion({
+          ref: teamRef,
+          isDefault: prevData.teams.length === 0,
+        }) as unknown) as IFirebaseUserTeam[],
+      })
+
+      doc = await ref.get()
+
+      this.currentUser = await toUser(doc.id, doc.data())
+
+      return true
+    } catch (err) {
+      console.error(`[UserService][getCurrentUser] failed: ${err}`)
+      return false
+    }
   }
 }
 

@@ -23,7 +23,7 @@ function App() {
       })
     })
 
-    const [currentUser] = await Promise.all([UserService.getInstance().getCurrentUser()])
+    const [currentUser] = await Promise.all([UserService.getInstance().reconnect()])
 
     setContext({ ...context, currentUser, currentTeam: currentUser ? currentUser.defaultTeam : null })
   }

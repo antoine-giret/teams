@@ -24,6 +24,7 @@ function AppNavigator({ currentUser }: IProps) {
     config: {
       [Screens.LOGIN]: { path: 'login' },
       [Screens.TEAM]: { path: 'team' },
+      [Screens.TEAM_FORM]: { path: 'new-team' },
     },
   })
 
@@ -41,6 +42,7 @@ function AppNavigator({ currentUser }: IProps) {
       {currentUser ? (
         <Stack.Navigator headerMode="none">
           <Stack.Screen component={TeamScreen} name={Screens.TEAM} />
+          <Stack.Screen component={TeamFormScreen} name={Screens.TEAM_FORM} />
         </Stack.Navigator>
       ) : (
         <Stack.Navigator headerMode="none">

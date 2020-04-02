@@ -22,7 +22,8 @@
       "backgroundColor": "#3f51b5"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "usesIcloudStorage": true
     }
   }
 }

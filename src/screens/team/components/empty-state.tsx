@@ -1,16 +1,19 @@
 import React, { useState } from 'react'
 import { Image, StyleSheet, Text, View } from 'react-native'
+import { useNavigation } from '@react-navigation/native'
 import { Trans, useTranslation } from 'react-i18next'
 import { Button, TextInput } from 'react-native-paper'
 
+import Screens from '../../../app/screens'
 import noTeamImage from '../../../../assets/image/no-team.svg'
 
 function EmptyState() {
   const [code, setCode] = useState()
+  const { navigate } = useNavigation()
   const { t } = useTranslation()
 
   function handleCreate() {
-    //
+    navigate(Screens.TEAM_FORM)
   }
 
   function handleJoin() {
@@ -40,7 +43,7 @@ function EmptyState() {
             value={code}
           />
           <Button mode="outlined" onPress={handleJoin}>
-            <Trans i18nKey="team.empty_state.actions.join" />
+            <Trans i18nKey="team.join_form.actions.join" />
           </Button>
         </View>
       </View>
