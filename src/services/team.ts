@@ -27,8 +27,15 @@ class TeamService {
 
   async create({ logo, ...inputRest }: IFirebaseCreateTeamInput): Promise<Team | null> {
     try {
-      const { getCurrent, addTeam: addTeamToUser } = UserService.getInstance()
-      const ref = await this.teamsRef.add({ ...inputRest, creatorUuid: getCurrent().uuid })
+      const currentUser = UserService.getInstance().getCurrent()
+      if (!currentUser) throw new Error('no current user')
+
+      const ref = await this.teamsRef.add({
+        ...inputRest,
+        creatorUuid: currentUser.uuid,
+        players: [{ ref: currentUser.firebaseRef }],
+        invitedPlayers: [],
+      })
       const doc = await ref.get()
       const data = doc.data()
 
@@ -42,7 +49,7 @@ class TeamService {
         data.logo = logoUrl
       }
 
-      await addTeamToUser(ref)
+      await UserService.getInstance().addTeam(ref)
 
       return toTeam(doc.id, data)
     } catch (err) {

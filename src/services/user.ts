@@ -38,10 +38,11 @@ class UserService {
       this.currentUser = null
     } else {
       try {
-        const doc = await this.usersRef.doc(currentUser.uid).get()
+        const ref = await this.usersRef.doc(currentUser.uid)
+        const doc = await ref.get()
         if (!doc.exists) throw new Error('user document missing')
 
-        this.currentUser = await toUser(currentUser.uid, doc.data())
+        this.currentUser = await toUser(currentUser.uid, doc.data(), ref)
       } catch (err) {
         console.error(`[UserService][getCurrentUser] failed: ${err}`)
         this.currentUser = null
@@ -69,7 +70,7 @@ class UserService {
 
       doc = await ref.get()
 
-      this.currentUser = await toUser(doc.id, doc.data())
+      this.currentUser = await toUser(doc.id, doc.data(), ref)
 
       return true
     } catch (err) {
