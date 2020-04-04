@@ -15,6 +15,7 @@ export interface IFirebaseTeam {
   name: string
   logo?: string
   joinCode?: string
+  creatorUuid: string
 }
 
 export interface IFirebaseCreateTeamInput {

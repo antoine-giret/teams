@@ -27,7 +27,8 @@ class TeamService {
 
   async create({ logo, ...inputRest }: IFirebaseCreateTeamInput): Promise<Team | null> {
     try {
-      const ref = await this.teamsRef.add(inputRest)
+      const { getCurrent, addTeam: addTeamToUser } = UserService.getInstance()
+      const ref = await this.teamsRef.add({ ...inputRest, creatorUuid: getCurrent().uuid })
       const doc = await ref.get()
       const data = doc.data()
 
@@ -41,7 +42,7 @@ class TeamService {
         data.logo = logoUrl
       }
 
-      await UserService.getInstance().addTeam(ref)
+      await addTeamToUser(ref)
 
       return toTeam(doc.id, data)
     } catch (err) {
