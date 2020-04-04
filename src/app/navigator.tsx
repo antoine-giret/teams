@@ -2,9 +2,8 @@ import React, { useEffect, useRef, useState } from 'react'
 import { NavigationContainer, useLinking } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 
-import { LoginScreen, TeamScreen } from '../screens'
+import { LoginScreen, TeamFormScreen, TeamScreen } from '../screens'
 import { User } from '../models'
-import TeamFormScreen from '../screens/team-form'
 
 import Screens from './screens'
 
@@ -23,8 +22,8 @@ function AppNavigator({ currentUser }: IProps) {
     prefixes: [],
     config: {
       [Screens.LOGIN]: { path: 'login' },
+      [Screens.TEAM_FORM]: { path: 'team/new' },
       [Screens.TEAM]: { path: 'team' },
-      [Screens.TEAM_FORM]: { path: 'new-team' },
     },
   })
 

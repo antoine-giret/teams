@@ -7,10 +7,10 @@ import { GamesScreen, HomeScreen, RankingScreen, SettingsScreen } from './screen
 const Tab = createMaterialBottomTabNavigator()
 
 export enum TeamScreens {
-  HOME = 'Home',
-  GAMES = 'Games',
-  RANKING = 'Ranking',
-  SETTINGS = 'Settings',
+  HOME = 'home',
+  GAMES = 'games',
+  RANKING = 'ranking',
+  SETTINGS = 'settings',
 }
 
 function TeamNavigator() {
